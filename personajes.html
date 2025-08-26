@@ -10,7 +10,32 @@
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
 </head>
-<body class="bg-primary">
+<style>
+    .col-6 {
+        text-align: justify;
+        background-color: rgb(236, 236, 179);
+        font-family:cursive;
+        animation: fadeIn 10s ease;
+    }
+    .col-4 {
+        animation: fadeIn 5s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+@keyframes anim-down { 
+	from { opacity: 0; transform: translateY(-100px); } 
+	to { opacity: 1; transform: translateY(0px); }  
+}		
+
+
+</style>
+
+
+
+
+<body class="bg-secondary">
     <div id="navbar"></div>
     <!-- codigo empieza aqui debajo -->
      
@@ -164,6 +189,10 @@
      
      
      <!-- codigo termina aqui arriba -->
+
+
+
+
     <div id="footer"></div>
 </body>
 <script src="script.js"></script>
