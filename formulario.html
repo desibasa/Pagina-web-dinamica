@@ -128,49 +128,7 @@
     <div id="footer"></div>
 </body>
 
-  <script>
-    const API_URL = 'https://akabab.github.io/superhero-api/api/all.json';
 
-    fetch(API_URL)
-      .then(response => response.json())
-      .then(data => {
-        const marvelCharacters = data.filter(p => p.biography.publisher === "Marvel Comics");
-        const personajesDiv = document.getElementById('personajes');
-
-        marvelCharacters.forEach(p => {
-          const card = document.createElement('div');
-          card.classList.add('card');
-
-          card.innerHTML = `
-            <img src="${p.images.md}" alt="${p.name}">
-            <h3>${p.name}</h3>
-            <p><span class="label">Nombre real:</span> ${p.biography.fullName || 'Desconocido'}</p>
-            <p><span class="label">Primera aparición:</span> ${p.biography.firstAppearance || 'N/A'}</p>
-            <p><span class="label">Lugar de nacimiento:</span> ${p.biography.placeOfBirth || 'N/A'}</p>
-            <p><span class="label">Ocupación:</span> ${p.work.occupation || 'Desconocida'}</p>
-            <p><span class="label">Afilación:</span> ${p.connections.groupAffiliation || 'Ninguna'}</p>
-            <p><span class="label">Altura:</span> ${p.appearance.height[1] || 'N/A'}</p>
-            <p><span class="label">Peso:</span> ${p.appearance.weight[1] || 'N/A'}</p>
-            <p><span class="label">Raza:</span> ${p.appearance.race || 'N/A'}</p>
-            <p><span class="label">Género:</span> ${p.appearance.gender || 'N/A'}</p>
-            <p><span class="label">Poderes:</span></p>
-            <ul>
-              <li><strong>Inteligencia:</strong> ${p.powerstats.intelligence}</li>
-              <li><strong>Fuerza:</strong> ${p.powerstats.strength}</li>
-              <li><strong>Velocidad:</strong> ${p.powerstats.speed}</li>
-              <li><strong>Durabilidad:</strong> ${p.powerstats.durability}</li>
-              <li><strong>Poder:</strong> ${p.powerstats.power}</li>
-              <li><strong>Combate:</strong> ${p.powerstats.combat}</li>
-            </ul>
-          `;
-
-          personajesDiv.appendChild(card);
-        });
-      })
-      .catch(error => {
-        console.error("❌ Error al obtener los personajes:", error);
-      });
-  </script>
 
 
 <script src="script.js"></script>
