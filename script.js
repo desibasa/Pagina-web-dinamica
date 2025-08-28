@@ -86,18 +86,16 @@ document.getElementById("vaciar-carrito").addEventListener("click", () => {
     renderizarCarrito();
 });
 
-function emergente() {
-    alert("Ahora formas");
-}
+
 
 
 function alertaLogin() {
-    alert("¡Bienvenido al universo de Spiderman!"); // mensaje personalizado
+    alert("!Hola de nuevo!"); // mensaje personalizado
 }
 
 // Para el formulario de nuevo usuario
 function alertaRegistro() {
-    alert("¡Felicidades! Has sido registrado correctamente"); // mensaje distinto
+    alert("Te damos la bienvenida al universo 616"); // mensaje distinto
 }
 
 
@@ -115,6 +113,81 @@ window.onload = () => {
     input.value = "";
   });
 };
+
+
+
+// Validar contraseña
+function validarRegistro() {
+  const pass = document.querySelector("input[name='nuevo_pass']").value;
+  const repite = document.querySelector("input[name='repite_pass']").value;
+
+  // Expresión regular: mínimo una mayúscula y un número
+  const regex = /^(?=.*[A-Z])(?=.*\d).+$/;
+
+  if (!regex.test(pass)) {
+    alert("La contraseña debe contener al menos una mayúscula y un número.");
+    return false;
+  }
+
+  if (pass !== repite) {
+    alert("Las contraseñas no coinciden.");
+    return false;
+  }
+
+  // Si pasa la validación
+  alertaRegistro();
+  return true;
+}
+
+
+
+// color registro fallido
+
+function validarRegistro() {
+  const usuario = document.querySelector("input[name='nuevo_usuario']").value.trim();
+  const pass = document.querySelector("input[name='nuevo_pass']").value;
+  const repite = document.querySelector("input[name='repite_pass']").value;
+  const errorDiv = document.getElementById("errorRegistro");
+
+  // Expresión regular: al menos una mayúscula y un número
+  const regex = /^(?=.*[A-Z])(?=.*\d).+$/;
+
+  let mensajes = [];
+
+  if (usuario === "") {
+    mensajes.push("⚠️ El nombre de usuario es obligatorio.");
+  }
+
+  if (!regex.test(pass)) {
+    mensajes.push("⚠️ La contraseña debe contener al menos una mayúscula y un número.");
+  }
+
+  if (pass !== repite) {
+    mensajes.push("⚠️ Las contraseñas no coinciden.");
+  }
+
+  if (mensajes.length > 0) {
+    errorDiv.innerHTML = mensajes.join("<br>");
+    errorDiv.classList.remove("d-none"); // mostramos
+    return false;
+  }
+
+  // Si todo está bien → ocultamos errores y mostramos bienvenida
+  errorDiv.classList.add("d-none");
+  alertaRegistro();
+  return true;
+}
+
+
+// fin color registro fallido
+
+
+
+
+
+
+
+
 
 // fin añadido chatgpt
 
