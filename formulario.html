@@ -65,8 +65,13 @@
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
 </head>
+
+
+
 <body class="bg-secondary">
     <div id="navbar"></div>
+
+
 
 
 <!-- AÑADIDO: FORMULARIO DE CONTACTO -->
@@ -75,13 +80,17 @@
     
     <!-- Columna con formulario -->
     <div class="form-box">
-      <form action="login_registrar.php" method="POST">
+      <form method="POST">
         <h2 class="text-left mb-4">INICIA SESIÓN</h2>
         
-        <input type="text" placeholder="🔒 Usuario" name="usuario" class="form-control mb-3" required>
-        <input type="password" placeholder="🔑 Contraseña" name="pass" class="form-control mb-3" required>
+        <input type="text" placeholder="🔒 Usuario" name="usuario" class="form-control mb-3" required autocomplete="off">
+        <input type="password" placeholder="🔑 Contraseña" name="pass" class="form-control mb-3" required autocomplete="off">
+        <span id="errorPassword" class="error"></span><br /><br />
         
-        <input type="submit" value="Ingresar" name="btningresar" class="btn btn-primary w-100 mb-3">
+
+
+        <button type="button" onclick="alertaLogin()" class="btn btn-success w-100 mb-3">Iniciar sesión</button>
+
       </form>
     </div>
     
@@ -96,11 +105,14 @@
       <form action="registrar.php" method="POST">
         <h2 class="text-end mb-4">NUEVO USUARIO</h2>
         
-        <input type="text" placeholder="🆕 Nuevo usuario" name="nuevo_usuario" class="form-control mb-3" required>
-        <input type="password" placeholder="🔑 Contraseña" name="nuevo_pass" class="form-control mb-3" required>
-        <input type="password" placeholder="🔒 Repetir contraseña" name="repite_pass" class="form-control mb-3" required>
+        <input type="text" placeholder="🆕 Nuevo usuario" name="nuevo_usuario" class="form-control mb-3" required autocomplete="off">
+        <input type="password" placeholder="🔑 Contraseña" name="nuevo_pass" class="form-control mb-3" required autocomplete="off">
+        <input type="password" placeholder="🔒 Repetir contraseña" name="repite_pass" class="form-control mb-3" required autocomplete="off">
         
-        <input type="submit" value="Registrar" name="btnregistrar" class="btn btn-success w-100 mb-3">
+
+ 
+        <input type="button" value="Registrar" onclick="alertaRegistro()"class="btn btn-success w-100 mb-3">
+
       </form>
     </div>
     
@@ -110,7 +122,56 @@
 
 
 
+
+
+
     <div id="footer"></div>
 </body>
+
+  <script>
+    const API_URL = 'https://akabab.github.io/superhero-api/api/all.json';
+
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => {
+        const marvelCharacters = data.filter(p => p.biography.publisher === "Marvel Comics");
+        const personajesDiv = document.getElementById('personajes');
+
+        marvelCharacters.forEach(p => {
+          const card = document.createElement('div');
+          card.classList.add('card');
+
+          card.innerHTML = `
+            <img src="${p.images.md}" alt="${p.name}">
+            <h3>${p.name}</h3>
+            <p><span class="label">Nombre real:</span> ${p.biography.fullName || 'Desconocido'}</p>
+            <p><span class="label">Primera aparición:</span> ${p.biography.firstAppearance || 'N/A'}</p>
+            <p><span class="label">Lugar de nacimiento:</span> ${p.biography.placeOfBirth || 'N/A'}</p>
+            <p><span class="label">Ocupación:</span> ${p.work.occupation || 'Desconocida'}</p>
+            <p><span class="label">Afilación:</span> ${p.connections.groupAffiliation || 'Ninguna'}</p>
+            <p><span class="label">Altura:</span> ${p.appearance.height[1] || 'N/A'}</p>
+            <p><span class="label">Peso:</span> ${p.appearance.weight[1] || 'N/A'}</p>
+            <p><span class="label">Raza:</span> ${p.appearance.race || 'N/A'}</p>
+            <p><span class="label">Género:</span> ${p.appearance.gender || 'N/A'}</p>
+            <p><span class="label">Poderes:</span></p>
+            <ul>
+              <li><strong>Inteligencia:</strong> ${p.powerstats.intelligence}</li>
+              <li><strong>Fuerza:</strong> ${p.powerstats.strength}</li>
+              <li><strong>Velocidad:</strong> ${p.powerstats.speed}</li>
+              <li><strong>Durabilidad:</strong> ${p.powerstats.durability}</li>
+              <li><strong>Poder:</strong> ${p.powerstats.power}</li>
+              <li><strong>Combate:</strong> ${p.powerstats.combat}</li>
+            </ul>
+          `;
+
+          personajesDiv.appendChild(card);
+        });
+      })
+      .catch(error => {
+        console.error("❌ Error al obtener los personajes:", error);
+      });
+  </script>
+
+
 <script src="script.js"></script>
 </html>
