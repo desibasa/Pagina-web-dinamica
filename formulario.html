@@ -51,6 +51,10 @@
     flex: 1;
     min-width: 300px;
   }
+  @font-face{
+            font-family: "titulos";
+            src:url(assets/fuentes/Trade_Winds/TradeWinds-Regular.ttf);
+        }
 </style>
 <!-- FIN DEL AÑADIDO -->
 
@@ -81,7 +85,7 @@
     <!-- Columna con formulario -->
     <div class="form-box">
       <form method="POST">
-        <h2 class="text-left mb-4">INICIA SESIÓN</h2>
+        <h2 class="text-left mb-4" style="font-family: titulos; color: rgb(255, 255, 255);" >INICIA SESIÓN</h2>
         
         <input type="text" placeholder="🔒 Usuario" name="usuario" class="form-control mb-3" required autocomplete="off">
         <input type="password" placeholder="🔑 Contraseña" name="pass" class="form-control mb-3" required autocomplete="off">
@@ -102,23 +106,26 @@
   <div class="form-container2 d-flex flex-wrap">
     
     <div class="form-box">
-      <form action="registrar.php" method="POST">
-        <h2 class="text-end mb-4">NUEVO USUARIO</h2>
-        
-        <input type="text" placeholder="🆕 Nuevo usuario" name="nuevo_usuario" class="form-control mb-3" required autocomplete="off">
-        <input type="password" placeholder="🔑 Contraseña" name="nuevo_pass" class="form-control mb-3" required autocomplete="off">
-        <input type="password" placeholder="🔒 Repetir contraseña" name="repite_pass" class="form-control mb-3" required autocomplete="off">
-        
+<form action="registrar.php" method="POST" id="formRegistro">
+  <h2 class="text-end mb-4"style="font-family: titulos; color: rgb(0, 0, 0);" >NUEVO USUARIO</h2>
 
- 
-        <input type="button" value="Registrar" onclick="alertaRegistro()"class="btn btn-success w-100 mb-3">
+  <input type="text" placeholder="🆕 Nuevo usuario" name="nuevo_usuario" class="form-control mb-3" required autocomplete="off">
+  <input type="password" placeholder="🔑 Contraseña" name="nuevo_pass" class="form-control mb-3" required autocomplete="off">
+  <input type="password" placeholder="🔒 Repetir contraseña" name="repite_pass" class="form-control mb-3" required autocomplete="off">
 
-      </form>
+  <!-- Contenedor de errores -->
+  <div id="errorRegistro" class="alert alert-danger d-none" role="alert">
+    <!-- Aquí metemos los mensajes -->
+  </div>
+
+  <input type="button" value="Registrar" onclick="validarRegistro()" class="btn btn-success w-100 mb-3">
+</form>
     </div>
     
   </div>
 </section>
 <!-- FIN FORMULARIO DE CONTACTO -->
+
 
 
 
