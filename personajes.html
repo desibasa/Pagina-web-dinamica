@@ -261,83 +261,75 @@
   </div>
 
 
+<div class="row mb-5" id="personajes">
 
-<div class="card-group">
-  <div class="card">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-      <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
 </div>
 
-
+<div class="text-center mt-4 mb-5">
+  <button id="cargarMasBtn" class="btn btn-primary">Cargar más personajes</button>
+</div>
 
 
   <div id="footer"></div>
 </body>
 
-    <script>
-    const API_URL = 'https://akabab.github.io/superhero-api/api/all.json';
+<script>
+const API_URL = 'https://akabab.github.io/superhero-api/api/all.json';
+let todosPersonajes = [];
+let personajesMostrados = 0;
+const personajesPorCarga = 6;
 
-    fetch(API_URL)
-      .then(response => response.json())
-      .then(data => {
-        const marvelCharacters = data.filter(p => p.biography.publisher === "Marvel Comics");
-        const personajesDiv = document.getElementById('personajes');
+fetch(API_URL)
+  .then(response => response.json())
+  .then(data => {
+    // Filtrar solo personajes de Marvel
+    todosPersonajes = data.filter(p => p.biography.publisher === "Marvel Comics");
+    
+    // Mostrar los primeros 6 personajes
+    mostrarPersonajes(0, personajesPorCarga);
+  })
+  .catch(error => console.error("Error al obtener los personajes:", error));
 
-        marvelCharacters.forEach(p => {
-          const card = document.createElement('div');
-          card.classList.add('card');
+// Función para mostrar personajes
+function mostrarPersonajes(inicio, cantidad) {
+  const personajesDiv = document.getElementById('personajes');
+  const personajesAmostrar = todosPersonajes.slice(inicio, inicio + cantidad);
+  
+  personajesAmostrar.forEach(personaje => {
+    const col = document.createElement('div');
+    col.classList.add('col-md-4', 'mb-3');
+    
+    col.innerHTML = `
+      <div class="card h-100">
+        <img src="${personaje.images.md}" class="card-img-top img-thumbnail" alt="${personaje.name}">
+        <div class="card-body">
+          <h5 class="card-title">${personaje.name}</h5>
+          <p class="card-text">
+            <strong>Nombre real:</strong> ${personaje.biography.fullName || 'Desconocido'}<br>
+            <strong>Primera aparición:</strong> ${personaje.biography.firstAppearance || 'N/A'}
+          </p>
+          <p class="card-text"><small class="text-body-secondary">Publicado por: ${personaje.biography.publisher}</small></p>
+        </div>
+      </div>
+    `;
+    
+    personajesDiv.appendChild(col);
+  });
+  
+  personajesMostrados += cantidad;
+  
+  // Ocultar botón si no hay más personajes
+  if (personajesMostrados >= todosPersonajes.length) {
+    document.getElementById('cargarMasBtn').style.display = 'none';
+  }
+}
 
-          card.innerHTML = `
-            <img src="${p.images.md}" alt="${p.name}">
-            <h3>${p.name}</h3>
-            <p><span class="label">Nombre real:</span> ${p.biography.fullName || 'Desconocido'}</p>
-            <p><span class="label">Primera aparición:</span> ${p.biography.firstAppearance || 'N/A'}</p>
-            <p><span class="label">Lugar de nacimiento:</span> ${p.biography.placeOfBirth || 'N/A'}</p>
-            <p><span class="label">Ocupación:</span> ${p.work.occupation || 'Desconocida'}</p>
-            <p><span class="label">Afilación:</span> ${p.connections.groupAffiliation || 'Ninguna'}</p>
-            <p><span class="label">Altura:</span> ${p.appearance.height[1] || 'N/A'}</p>
-            <p><span class="label">Peso:</span> ${p.appearance.weight[1] || 'N/A'}</p>
-            <p><span class="label">Raza:</span> ${p.appearance.race || 'N/A'}</p>
-            <p><span class="label">Género:</span> ${p.appearance.gender || 'N/A'}</p>
-            <p><span class="label">Poderes:</span></p>
-            <ul>
-              <li><strong>Inteligencia:</strong> ${p.powerstats.intelligence}</li>
-              <li><strong>Fuerza:</strong> ${p.powerstats.strength}</li>
-              <li><strong>Velocidad:</strong> ${p.powerstats.speed}</li>
-              <li><strong>Durabilidad:</strong> ${p.powerstats.durability}</li>
-              <li><strong>Poder:</strong> ${p.powerstats.power}</li>
-              <li><strong>Combate:</strong> ${p.powerstats.combat}</li>
-            </ul>
-          `;
+// Event listener para el botón
+document.getElementById('cargarMasBtn').addEventListener('click', function() {
+  mostrarPersonajes(personajesMostrados, personajesPorCarga);
+});
+</script>
 
-          personajesDiv.appendChild(card);
-        });
-      })
-      .catch(error => {
-        console.error("❌ Error al obtener los personajes:", error);
-      });
-  </script>
 <script src="script.js"></script>
 
 </html>
