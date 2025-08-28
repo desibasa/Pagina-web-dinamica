@@ -85,3 +85,36 @@ document.getElementById("vaciar-carrito").addEventListener("click", () => {
     carrito = [];
     renderizarCarrito();
 });
+
+function emergente() {
+    alert("Ahora formas");
+}
+
+
+function alertaLogin() {
+    alert("¡Bienvenido al universo de Spiderman!"); // mensaje personalizado
+}
+
+// Para el formulario de nuevo usuario
+function alertaRegistro() {
+    alert("¡Felicidades! Has sido registrado correctamente"); // mensaje distinto
+}
+
+
+
+// añadido chatgpt
+
+function mostrarAlerta(event) {
+    event.preventDefault(); // evita que se recargue la página
+    alert("Ahora formas parte del universo 616");
+    return false; // asegura que no se envíe
+}
+
+window.onload = () => {
+  document.querySelectorAll("input[type=text], input[type=password]").forEach(input => {
+    input.value = "";
+  });
+};
+
+// fin añadido chatgpt
+
