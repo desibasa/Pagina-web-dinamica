@@ -10,28 +10,23 @@ function loadComponent(id, file) {
 loadComponent("navbar", "navbar.html");
 loadComponent("footer", "footer.html");
 
-function loadComponent(id, file) {
-  fetch(file)
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById(id).innerHTML = data;
-    })
-    .catch(error => console.error(`Error al cargar ${file}:`, error));
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+// Guardar en localStorage
+function guardarCarrito() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
 }
-
-loadComponent("navbar", "navbar.html");
-loadComponent("footer", "footer.html");
-
-let carrito = [];
 
 function agregarAlCarrito(id, nombre, precio) {
   const producto = { id, nombre, precio: parseFloat(precio) };
   carrito.push(producto);
+  guardarCarrito();
   renderizarCarrito();
 }
 
 function eliminarDelCarrito(index) {
   carrito.splice(index, 1);
+  guardarCarrito();
   renderizarCarrito();
 }
 
@@ -43,9 +38,9 @@ function renderizarCarrito() {
     const item = document.createElement("li");
     item.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "m-3");
     item.innerHTML = `
-            ${prod.nombre} - ${prod.precio} € 
-            <button class="btn btn-sm btn-danger eliminar-producto" data-index="${index}">Eliminar</button>
-        `;
+      ${prod.nombre} - ${prod.precio} € 
+      <button class="btn btn-sm btn-danger eliminar-producto" data-index="${index}">Eliminar</button>
+    `;
     lista.appendChild(item);
   });
 
@@ -58,11 +53,8 @@ function calcularTotal() {
 }
 
 document.addEventListener("click", function (e) {
-
   if (e.target.classList.contains("agregar-carrito")) {
-    const id = e.target.dataset.id;
-    const nombre = e.target.dataset.nombre;
-    const precio = e.target.dataset.precio;
+    const { id, nombre, precio } = e.target.dataset;
     agregarAlCarrito(id, nombre, precio);
   }
 
@@ -74,8 +66,12 @@ document.addEventListener("click", function (e) {
 
 document.getElementById("vaciar-carrito").addEventListener("click", () => {
   carrito = [];
+  guardarCarrito();
   renderizarCarrito();
 });
+
+// 🔥 Al cargar la página, renderiza el carrito que estaba guardado
+document.addEventListener("DOMContentLoaded", renderizarCarrito);
 
 function alertaLogin() {
   alert("!Hola de nuevo!");
