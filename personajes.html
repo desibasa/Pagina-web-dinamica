@@ -1,81 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Personajes de Marvel</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
     crossorigin="anonymous"></script>
-    <script>
+  <style>
+    #texto {
+      background-color: rgb(236, 236, 179);
+      font-family: cursive;
+      animation: fadeIn 10s ease;
+    }
+
+    .col-4 {
+      animation: fadeIn 5s ease;
+    }
 
 
-    </script>
+    .col-md-4 img {
+      height: 100%;
+      object-fit: cover;
+      /* hace que rellene el alto sin deformarse */
+      display: block;
+    }
+
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes anim-down {
+      from {
+        opacity: 0;
+        transform: translateY(-100px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+    }
+
+    @font-face {
+      font-family: "titulos";
+      src: url(assets/fuentes/Trade_Winds/TradeWinds-Regular.ttf);
+    }
+  </style>
 </head>
-<style>
-  #texto {
-    background-color: rgb(236, 236, 179);
-    font-family: cursive;
-    animation: fadeIn 10s ease;
-  }
-
-  .col-4 {
-    animation: fadeIn 5s ease;
-  }
-
-
-  .col-md-4 img {
-    height: 100%;
-    object-fit: cover;
-    /* hace que rellene el alto sin deformarse */
-    display: block;
-  }
-
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes anim-down {
-    from {
-      opacity: 0;
-      transform: translateY(-100px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0px);
-    }
-  }
-
-  @font-face{
-            font-family: "titulos";
-            src:url(assets/fuentes/Trade_Winds/TradeWinds-Regular.ttf);
-        }
-</style>
-
-
-
 
 <body class="bg-secondary">
+
   <div id="navbar"></div>
-  <!-- codigo empieza aqui debajo -->
 
   <div class="text-center">
     <h2 class="mt-5 fs-1 fs-sm-2 fs-md-3 fs-lg-1" style="font-family: titulos;">Personajes principales</h2>
   </div>
 
   <div class="container">
-
     <div class="card m-5">
       <div class="row g-0">
         <div class="col-md-4">
@@ -96,7 +87,6 @@
       </div>
     </div>
 
-
     <div class="card m-5">
       <div class="row g-0">
         <div class="col-md-4">
@@ -114,7 +104,6 @@
         </div>
       </div>
     </div>
-
 
     <div class="card m-5">
       <div class="row g-0">
@@ -140,9 +129,6 @@
       </div>
     </div>
 
-
-
-
     <div class="card m-5">
       <div class="row g-0">
         <div class="col-md-4">
@@ -164,8 +150,6 @@
         </div>
       </div>
     </div>
-
-
 
     <div class="card m-5">
       <div class="row g-0">
@@ -209,7 +193,6 @@
       </div>
     </div>
 
-
     <div class="card m-5">
       <div class="row g-0">
         <div class="col-md-4">
@@ -228,7 +211,6 @@
         </div>
       </div>
     </div>
-
 
     <div class="card m-5">
       <div class="row g-0">
@@ -250,9 +232,7 @@
       </div>
     </div>
   </div>
-
   </div>
-
 
   </div>
 
@@ -260,46 +240,41 @@
     <h2 class="mt-5 fs-1 fs-sm-2 fs-md-3 fs-lg-1" style="font-family: titulos;">Lista completa</h2>
   </div>
 
+  <div class="row mb-5" id="personajes">
+  </div>
 
-<div class="row mb-5" id="personajes">
-
-</div>
-
-<div class="text-center mt-4 mb-5">
-  <button id="cargarMasBtn" class="btn btn-primary">Cargar más personajes</button>
-</div>
+  <div class="text-center mt-4 mb-5">
+    <button id="cargarMasBtn" class="btn btn-primary">Cargar más personajes</button>
+  </div>
 
 
   <div id="footer"></div>
-</body>
 
-<script>
-const API_URL = 'https://akabab.github.io/superhero-api/api/all.json';
-let todosPersonajes = [];
-let personajesMostrados = 0;
-const personajesPorCarga = 6;
+  <script>
+    const API_URL = 'https://akabab.github.io/superhero-api/api/all.json';
+    let todosPersonajes = [];
+    let personajesMostrados = 0;
+    const personajesPorCarga = 6;
 
-fetch(API_URL)
-  .then(response => response.json())
-  .then(data => {
-    // Filtrar solo personajes de Marvel
-    todosPersonajes = data.filter(p => p.biography.publisher === "Marvel Comics");
-    
-    // Mostrar los primeros 6 personajes
-    mostrarPersonajes(0, personajesPorCarga);
-  })
-  .catch(error => console.error("Error al obtener los personajes:", error));
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => {
 
-// Función para mostrar personajes
-function mostrarPersonajes(inicio, cantidad) {
-  const personajesDiv = document.getElementById('personajes');
-  const personajesAmostrar = todosPersonajes.slice(inicio, inicio + cantidad);
-  
-  personajesAmostrar.forEach(personaje => {
-    const col = document.createElement('div');
-    col.classList.add('col-md-4', 'mb-3');
-    
-    col.innerHTML = `
+        todosPersonajes = data.filter(p => p.biography.publisher === "Marvel Comics");
+
+        mostrarPersonajes(0, personajesPorCarga);
+      })
+      .catch(error => console.error("Error al obtener los personajes:", error));
+
+    function mostrarPersonajes(inicio, cantidad) {
+      const personajesDiv = document.getElementById('personajes');
+      const personajesAmostrar = todosPersonajes.slice(inicio, inicio + cantidad);
+
+      personajesAmostrar.forEach(personaje => {
+        const col = document.createElement('div');
+        col.classList.add('col-md-4', 'mb-3');
+
+        col.innerHTML = `
       <div class="card h-100">
         <img src="${personaje.images.md}" class="card-img-top img-thumbnail" alt="${personaje.name}">
         <div class="card-body">
@@ -312,26 +287,23 @@ function mostrarPersonajes(inicio, cantidad) {
         </div>
       </div>
     `;
-    
-    personajesDiv.appendChild(col);
-  });
-  
-  personajesMostrados += cantidad;
-  
-  // Ocultar botón si no hay más personajes
-  if (personajesMostrados >= todosPersonajes.length) {
-    document.getElementById('cargarMasBtn').style.display = 'none';
-  }
-}
 
-// Event listener para el botón
-document.getElementById('cargarMasBtn').addEventListener('click', function() {
-  mostrarPersonajes(personajesMostrados, personajesPorCarga);
-});
+        personajesDiv.appendChild(col);
+      });
 
-//Comentario
-</script>
+      personajesMostrados += cantidad;
 
-<script src="script.js"></script>
+      if (personajesMostrados >= todosPersonajes.length) {
+        document.getElementById('cargarMasBtn').style.display = 'none';
+      }
+    }
+
+    document.getElementById('cargarMasBtn').addEventListener('click', function () {
+      mostrarPersonajes(personajesMostrados, personajesPorCarga);
+    });
+
+  </script>
+  <script src="script.js"></script>
+</body>
 
 </html>

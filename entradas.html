@@ -3,89 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Entradas de la pagina</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
     <style>
-        @font-face{
+        @font-face {
             font-family: "titulos";
-            src:url(assets/fuentes/Trade_Winds/TradeWinds-Regular.ttf);
+            src: url(assets/fuentes/Trade_Winds/TradeWinds-Regular.ttf);
         }
 
-        #carrito{
+        #carrito {
             margin-top: 100px !important;
             margin-bottom: 100px !important;
         }
-
     </style>
 </head>
+
 <body class="bg-secondary">
+
     <div id="navbar"></div>
 
-        <div class="text-center">
-            <h2 class="mt-5 fs-1 fs-sm-2 fs-md-3 fs-lg-1" style="font-family: titulos;">Entradas</h2>
-            <p class="fs-6 fs-md-5 fs-lg-4">Del 18 de Octubre al 20 de Octubre, Plaza imperial, Madrid.</p>
-        </div>
+    <div class="text-center">
+        <h2 class="mt-5 fs-1 fs-sm-2 fs-md-3 fs-lg-1" style="font-family: titulos;">Entradas</h2>
+        <p class="fs-6 fs-md-5 fs-lg-4">Del 18 de Octubre al 20 de Octubre, Plaza imperial, Madrid.</p>
+    </div>
 
     <div class="contenedor-principal mb-5">
         <section id="catalogo-productos">
             <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card h-100 d-flex justify-content-center align-items-center mt-5">
-                    <h2 class="card-title mt-4">Entrada Bronze</h2>
-                    <img src="assets/ironmancarrito.jpg" class="card-img-top mt-3 img-thumbnail img-fluid" alt="ironamn">
-                    <div class="card-body mb-1 mt-5">
-                        <p class="card-text">- Pase de un día al evento.</p>
-                        <p class="card-text">- Acceso a todas las exhibiciones principales de Marvel.</p>
-                        <p class="card-text">- Mapa digital con todas las zonas y actividades.</p>
-                        <p class="card-text">- Foto con un stand de Marvel (elige entre varios héroes).</p>
-                        <p class="card-text">- Descuento del 10% en merchandising oficial del día.</p>
-                        <p class="card-text">- Souvenir digital exclusivo de tu héroe favorito.</p>
-                    </div>
-                    <div class="mb-5">
-                        <h3 class="mb-5">Precio: 10€</h3>
-                        <button class="btn btn-primary agregar-carrito" data-id="1" data-nombre="Entrada Bronze" data-precio="10">Añadir al carrito</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100 d-flex justify-content-center align-items-center mt-5">
-                    <h2 class="card-title mt-4">Entrada Silver</h2>
-                    <img src="assets/silvercarrito.jpg" class="card-img-top mt-3 img-thumbnail img-fluid" alt="surfsilver">
-                    <div class="card-body text-start mt-5">
-                        <p class="card-text">Pase para todo el fin de semana.</p>
-                        <p class="card-text">Todo lo que incluye la Bronze, más:</p>
-                        <p class="card-text">Acceso preferente a charlas y talleres.</p>
-                        <p class="card-text">Pulsera conmemorativa exclusiva.</p>
-                        <p class="card-text">Entrada a la zona de proyecciones especiales (trailers inéditos y cortos animados).</p>
-                </div>
-                 <div class="mb-5">
-                        <h3 class="mb-5">Precio: 20€</h3>
-                        <button class="btn btn-primary agregar-carrito" data-id="2" data-nombre="Entrada Silver" data-precio="20">Añadir al carrito</button>
+                <div class="col">
+                    <div class="card h-100 d-flex justify-content-center align-items-center mt-5">
+                        <h2 class="card-title mt-4">Entrada Bronze</h2>
+                        <img src="assets/ironmancarrito.jpg" class="card-img-top mt-3 img-thumbnail img-fluid"
+                            alt="ironamn">
+                        <div class="card-body mb-1 mt-5">
+                            <p class="card-text">- Pase de un día al evento.</p>
+                            <p class="card-text">- Acceso a todas las exhibiciones principales de Marvel.</p>
+                            <p class="card-text">- Mapa digital con todas las zonas y actividades.</p>
+                            <p class="card-text">- Foto con un stand de Marvel (elige entre varios héroes).</p>
+                            <p class="card-text">- Descuento del 10% en merchandising oficial del día.</p>
+                            <p class="card-text">- Souvenir digital exclusivo de tu héroe favorito.</p>
+                        </div>
+                        <div class="mb-5">
+                            <h3 class="mb-5">Precio: 10€</h3>
+                            <button class="btn btn-primary agregar-carrito" data-id="1" data-nombre="Entrada Bronze"
+                                data-precio="10">Añadir al carrito</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <div class="card h-100 d-flex justify-content-center align-items-center mt-5">
-                    <h2 class="card-title mt-4">Entrada Gold</h2>
-                    <img src="assets/warlockcarrito2.jpg" class="card-img-top mt-3 img-thumbnail img-fluid" alt="warlock">
-                    <div class="card-body text-start mt-4">
-                        <p class="card-text">La experiencia definitiva para los verdaderos seguidores del universo Marvel.</p>
-                        <p class="card-text">Todo lo que incluye la Silver, más:</p>
-                        <p class="card-text">Zona VIP con acceso sin colas a atracciones y paneles.</p>
-                        <p class="card-text">Meet & Greet con personajes del evento.</p>
-                        <p class="card-text">Pack de merchandising exclusivo “Gold Edition”.</p>
-                        <p class="card-text">Foto profesional en el escenario oficial de Marvel.</p>
-                    </div>
-                     <div class="mb-5">
-                        <h3 class="mb-5">Precio: 50€</h3>
-                        <button class="btn btn-primary agregar-carrito" data-id="3" data-nombre="Entrada Gold" data-precio="50">Añadir al carrito</button>
+                <div class="col">
+                    <div class="card h-100 d-flex justify-content-center align-items-center mt-5">
+                        <h2 class="card-title mt-4">Entrada Silver</h2>
+                        <img src="assets/silvercarrito.jpg" class="card-img-top mt-3 img-thumbnail img-fluid"
+                            alt="surfsilver">
+                        <div class="card-body text-start mt-5">
+                            <p class="card-text">Pase para todo el fin de semana.</p>
+                            <p class="card-text">Todo lo que incluye la Bronze, más:</p>
+                            <p class="card-text">Acceso preferente a charlas y talleres.</p>
+                            <p class="card-text">Pulsera conmemorativa exclusiva.</p>
+                            <p class="card-text">Entrada a la zona de proyecciones especiales (trailers inéditos y
+                                cortos animados).</p>
+                        </div>
+                        <div class="mb-5">
+                            <h3 class="mb-5">Precio: 20€</h3>
+                            <button class="btn btn-primary agregar-carrito" data-id="2" data-nombre="Entrada Silver"
+                                data-precio="20">Añadir al carrito</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="col">
+                    <div class="card h-100 d-flex justify-content-center align-items-center mt-5">
+                        <h2 class="card-title mt-4">Entrada Gold</h2>
+                        <img src="assets/warlockcarrito2.jpg" class="card-img-top mt-3 img-thumbnail img-fluid"
+                            alt="warlock">
+                        <div class="card-body text-start mt-4">
+                            <p class="card-text">La experiencia definitiva para los verdaderos seguidores del universo
+                                Marvel.</p>
+                            <p class="card-text">Todo lo que incluye la Silver, más:</p>
+                            <p class="card-text">Zona VIP con acceso sin colas a atracciones y paneles.</p>
+                            <p class="card-text">Meet & Greet con personajes del evento.</p>
+                            <p class="card-text">Pack de merchandising exclusivo “Gold Edition”.</p>
+                            <p class="card-text">Foto profesional en el escenario oficial de Marvel.</p>
+                        </div>
+                        <div class="mb-5">
+                            <h3 class="mb-5">Precio: 50€</h3>
+                            <button class="btn btn-primary agregar-carrito" data-id="3" data-nombre="Entrada Gold"
+                                data-precio="50">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -96,7 +105,7 @@
         </div>
         <div class="card-body">
             <ul id="lista-carrito">
-                
+
             </ul>
             <p class="card-text">Total: <span id="total">0.00</span> €</p>
             <button class="btn btn-primary" id="vaciar-carrito">Vaciar carrito</button>
@@ -104,6 +113,7 @@
     </div>
 
     <div id="footer"></div>
+
 </body>
 <script src="script.js"></script>
 </html>
